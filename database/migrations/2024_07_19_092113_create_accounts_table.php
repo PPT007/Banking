@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('dob');
             $table->text('address');
             $table->string('account_number');
+            $table->string('balance')->default('10000');
             $table->timestamps();
         });
     }

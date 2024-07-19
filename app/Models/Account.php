@@ -14,7 +14,8 @@ class Account extends Model
         'last_name',
         'dob',
         'address',
-        'account_number'
+        'account_number',
+        'balance'
     ];
 
     protected static function boot(){

@@ -10,9 +10,15 @@ use Illuminate\Http\Request;
 
 class AccountController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $accounts = Account::all();
+        $query = Account::query();
+        if ($request->has('search')) {
+            $query->where('first_name', 'like', '%' . $request->search . '%')
+                ->orWhere('last_name', 'like', '%' . $request->search . '%')
+                ->orWhere('account_number', 'like', '%' . $request->search . '%');
+        }
+        $accounts = $query->paginate(10);
         return view('admin.accounts.index', compact('accounts'));
     }
 
@@ -32,7 +38,7 @@ class AccountController extends Controller
 
     public function show($id)
     {
-        $account = Account::with('transactions')->findOrFail($id);
+        $account = Account::findOrFail($id);
         return view('admin.accounts.show', compact('account'));
     }
 }
