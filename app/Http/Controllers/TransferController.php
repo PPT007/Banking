@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Account;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class TransferController extends Controller
 {
@@ -15,31 +17,16 @@ class TransferController extends Controller
             'amount' => 'required|numeric|min:0.01',
         ]);
 
-        $senderAccount = auth()->user()->account;
+        $senderName = Auth::user()->name;
         $recipientAccount = Account::where('account_number', $request->recipient_account_number)->first();
-
-        if ($senderAccount->balance < $request->amount) {
-            return back()->withErrors(['amount' => 'Insufficient balance.']);
-        }
-
-        $senderAccount->balance -= $request->amount;
         $recipientAccount->balance += $request->amount;
-
-        $senderAccount->save();
         $recipientAccount->save();
-
-        Transaction::create([
-            'account_id' => $senderAccount->id,
-            'type' => 'debit',
-            'amount' => $request->amount,
-            'description' => 'Transfer to account ' . $recipientAccount->account_number,
-        ]);
 
         Transaction::create([
             'account_id' => $recipientAccount->id,
             'type' => 'credit',
             'amount' => $request->amount,
-            'description' => 'Transfer from account ' . $senderAccount->account_number,
+            'description' => 'Transfer from account ' . $senderName,
         ]);
 
         return back()->with('status', 'Transfer successful.');

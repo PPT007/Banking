@@ -22,8 +22,8 @@
                     </x-nav-link>
                 </div>
             @else
-                    <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
-                        {{ __('Home') }}
+                    <x-nav-link :href="route('transfer.create')" :active="request()->routeIs('transfer.create')">
+                        {{ __('Transfer Funds') }}
                     </x-nav-link>
             @endif
             </div>

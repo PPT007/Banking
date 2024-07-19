@@ -19,6 +19,6 @@ class CheckAdmin
             return $next($request);
         }        
 
-        return redirect('/profile')->with('error', 'You do not have admin access.');
+        return redirect('/transfer')->with('error', 'You do not have admin access.');
     }
 }

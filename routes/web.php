@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\TransferController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 });
 
 
-Route::post('transfer', 'TransferController@store')->name('transfer.store');
+Route::get('/transfer', function () { return view('transfer'); })->name('transfer.create');
+Route::post('transfer', [TransferController::class, 'store'])->name('transfer.store');
 
 require __DIR__.'/auth.php';
