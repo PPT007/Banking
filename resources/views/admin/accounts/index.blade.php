@@ -32,7 +32,7 @@
                             <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-200">{{ $account->last_name }}</td>
                             <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-200">{{ $account->balance }}</td>
                             <td class="border border-gray-300 dark:border-gray-600 px-4 py-2">
-                                <a href="{{ route('admin.accounts.show', $account->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded">View</a>
+                                <a href="{{ route('admin.accounts.show', $account->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded text-blue-500 underline">View transactions</a>
                             </td>
                         </tr>
                     @empty
