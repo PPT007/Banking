@@ -18,7 +18,7 @@ The Banking System project is a comprehensive solution built with PHP and Larave
 
 - **Fund Transfers:**
   - Users can transfer funds between accounts.
-  - Support for USD, GBP, and EUR with automatic currency conversion using the ExchangeRates API.
+  - Support for USD, GBP, and EUR with automatic currency conversion using the ExchangeRates API
 
 ## Technologies
 
